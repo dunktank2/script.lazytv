@@ -203,18 +203,32 @@ ep_details_query = {
     },
     "id": "1",
 }
-seek = {"jsonrpc": "2.0", "id": 1, "method": "Player.Seek", "params": {"playerid": 1, "value": 0}}
+seek = {
+    "jsonrpc": "2.0", 
+    "id": 1, 
+    "method": "Player.Seek", 
+    "params": {
+        "playerid": 1, 
+        "value": 0
+    }
+}
 plf = {
     "jsonrpc": "2.0",
     "id": 1,
     "method": "Files.GetDirectory",
-    "params": {"directory": "special://profile/playlists/video/", "media": "video"},
+    "params": {
+        "directory": "special://profile/playlists/video/", 
+        "media": "video"
+    },
 }
 add_this_ep = {
     "jsonrpc": "2.0",
     "id": 1,
     "method": "Playlist.Add",
-    "params": {"item": {"episodeid": "placeholder"}, "playlistid": 1},
+    "params": {
+        "item": {"episodeid": "placeholder"}, 
+        "playlistid": 1
+    },
 }
 
 
@@ -477,7 +491,15 @@ class LazyPlayer(xbmc.Player):
                         seek_point = int(
                             (float(res_point["position"]) / float(res_point["total"])) * 100
                         )
-                        sseek = {"jsonrpc":"2.0", "method":"Player.Seek", "params": { "playerid":1, "value":{ "percentage": seek_point } }, "id":1}
+                        seek = {
+                            "jsonrpc":"2.0", 
+                            "method":"Player.Seek", 
+                            "params": { 
+                                "playerid":1, 
+                                "value":{ "percentage": seek_point } 
+                            }, 
+                            "id":1
+                        }
                         json_query(seek, True)
 
                 # this prompts Main daemon to set up the swap and prepare the prompt
